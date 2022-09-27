@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<title>进销存管理系统</title>
+<style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: minimal.css 9079 2022-06-19 14:00:56Z milde $                                                               */
+/* :Copyright: © 2015, 2021 Günter Milde.                                  */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS3 stylesheet defines rules for Docutils elements without        */
+/* HTML equivalent. It is required to make the document semantics visible. */
+/*                                                                         */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link        */
+
+/* titles */
+p.topic-title,
+p.admonition-title,
+p.system-message-title {
+  font-weight: bold;
+}
+p.sidebar-title,
+p.rubric {
+  font-weight: bold;
+  font-size: larger;
+}
+p.rubric {
+  color: maroon;
+}
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+h1 + p.subtitle {
+  font-size: 1.6em;
+}
+a.toc-backref {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Warnings, Errors */
+.system-messages h2,
+.system-message-title,
+span.problematic {
+  color: red;
+}
+
+/* Inline Literals */
+.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wrap at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .simple  ul, .simple  ol,
+.compact li, .compact ul, .compact ol,
+.simple  > li p, dl.simple  > dd,
+.compact > li p, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Nested Paragraphs */
+p:first-child { margin-top: 0; }
+p:last-child { margin-bottom: 0; }
+details > p:last-child { margin-bottom: 1em; }
+
+/* Table of Contents */
+.contents ul.auto-toc { /* section numbers present */
+  list-style-type: none;
+}
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+/* Definition Lists and Derivatives */
+dt .classifier { font-style: italic }
+dt .classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+/* Field Lists and similar */
+/* bold field name, content starts on the same line */
+dl.field-list,
+dl.option-list,
+dl.docinfo {
+  display: flow-root;
+}
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.2em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples, fit all Docinfo fields */
+}
+/* start nested lists on new line */
+dd > dl:first-child,
+dd > ul:first-child,
+dd > ol:first-child {
+  clear: left;
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+
+/* Bibliographic Fields (docinfo) */
+dl.docinfo pre.address {
+  font: inherit;
+  margin: 0.5em 0;
+}
+dl.docinfo > dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+
+.footnote, .citation { margin: 1em 0; } /* default paragraph skip (Firefox) */
+/* hanging indent */
+.citation { padding-left: 2em; }
+.footnote { padding-left: 1.7em; }
+.footnote.superscript { padding-left: 1.0em; }
+.citation > .label { margin-left: -2em; }
+.footnote > .label { margin-left: -1.7em; }
+.footnote.superscript > .label { margin-left: -1.0em; }
+
+.footnote > .label + *,
+.citation > .label + * {
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: top;
+}
+.footnote > .backrefs + *,
+.citation > .backrefs + * {
+  margin-top: 0;
+}
+.footnote > .label + p, .footnote > .backrefs + p,
+.citation > .label + p, .citation > .backrefs + p {
+  display: inline;
+  vertical-align: inherit;
+}
+
+.backrefs { user-select: none; }
+.backrefs > a { font-style: italic; }
+
+/* superscript footnotes */
+a[role="doc-noteref"].superscript,
+.footnote.superscript > .label,
+.footnote.superscript > .backrefs {
+  vertical-align: super;
+  font-size: smaller;
+  line-height: 1;
+}
+a[role="doc-noteref"].superscript > .fn-bracket,
+.footnote.superscript > .label > .fn-bracket {
+  /* hide brackets in display but leave for copy/paste */
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+}
+[role="doc-noteref"].superscript + [role="doc-noteref"].superscript {
+  padding-left: 0.15em; /* separate consecutive footnote references */
+  /* TODO: unfortunately, "+" also selects with text between the references. */
+}
+
+/* Alignment */
+.align-left   {
+  text-align: left;
+  margin-right: auto;
+}
+.align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-right  {
+  text-align: right;
+  margin-left: auto;
+}
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* reset inner alignment in figures and tables */
+figure.align-left, figure.align-right,
+table.align-left, table.align-center, table.align-right {
+  text-align: inherit;
+}
+
+/* Text Blocks */
+.topic { margin: 1em 2em; }
+.sidebar,
+.admonition,
+.system-message {
+  margin: 1em 2em;
+  border: thin solid;
+  padding: 0.5em 1em;
+}
+div.line-block { display: block; }
+div.line-block div.line-block, pre { margin-left: 2em; }
+
+/* Code line numbers: dropped when copying text from the page */
+pre.code .ln { display: none; }
+pre.code code:before {
+  content: attr(data-lineno); /* …, none) fallback not supported by any browser */
+  color: gray;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+td, th {
+  border: thin solid silver;
+  padding: 0 1ex;
+}
+.borderless td, .borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+table > caption {
+  text-align: left;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+table.captionbelow {
+  caption-side: bottom;
+}
+
+/* Document Header and Footer */
+header { border-bottom: 1px solid black; }
+footer { border-top: 1px solid black; }
+
+/* Images are block-level by default in Docutils */
+/* New HTML5 block elements: set display for older browsers */
+img, header, footer, main, aside, nav, section, figure, video, details {
+  display: block;
+}
+/* inline images */
+p img, p video, figure img, figure video {
+  display: inline;
+}
+
+</style>
+<style type="text/css">
+
+/* CSS31_ style sheet for the output of Docutils HTML writers.             */
+/* Rules for easy reading and pre-defined style variants.                  */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: plain.css 9081 2022-06-19 20:23:12Z milde $                                                               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: https://www.w3.org/Style/CSS/                                 */
+
+
+/* Document Structure */
+/* ****************** */
+
+/* "page layout" */
+body {
+  margin: 0;
+  background-color: #dbdbdb;
+  --field-indent: 9em; /* default indent of fields in field lists */
+}
+main, footer, header {
+  line-height:1.6;
+  /* avoid long lines --> better reading */
+  /* optimum is 45…75 characters/line <http://webtypography.net/2.1.2> */
+  /* OTOH: lines should not be too short because of missing hyphenation, */
+  max-width: 50rem;
+  padding: 1px 2%; /* 1px on top avoids grey bar above title (mozilla) */
+  margin: auto;
+}
+main {
+  counter-reset: table figure;
+  background-color: white;
+}
+footer, header {
+  font-size: smaller;
+  padding: 0.5em 2%;
+  border: none;
+}
+
+/* Table of Contents */
+ul.auto-toc > li > p {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+nav.contents ul {
+  padding-left: 1em;
+}
+main > nav.contents ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B29\ ';
+}
+main > nav.contents ul ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B1D\ ';
+}
+
+/* Transitions */
+hr.docutils {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Paragraphs */
+
+/* vertical space (parskip) */
+p, ol, ul, dl, li,
+div.line-block,
+.footnote, .citation,
+div > math,
+table {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6,
+dd, details > p:last-child {
+  margin-bottom: 0.5em;
+}
+
+/* Lists */
+/* ===== */
+
+/* Definition Lists */
+/* Indent lists nested in definition lists */
+dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
+
+/* Description Lists */
+/* styled like in most dictionaries, encyclopedias etc. */
+dl.description {
+  display: flow-root;
+}
+dl.description > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.3em;
+}
+dl.description > dd:after {
+  display: table;
+  content: "";
+  clear: left; /* clearfix for empty descriptions */
+}
+
+/* Field Lists */
+
+dl.field-list > dd,
+dl.docinfo > dd {
+  margin-left: var(--field-indent); /* adapted in media queries or HTML */
+}
+
+/* example for custom field-name width */
+dl.field-list.narrow > dd {
+  --field-indent: 5em;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+
+/* Bibliographic Fields */
+
+/* generally, bibliographic fields use dl.docinfo */
+/* but dedication and abstract are placed into divs */
+div.abstract p.topic-title {
+  text-align: center;
+}
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic;
+}
+div.dedication p.topic-title {
+  font-style: normal;
+}
+
+/* disclosures */
+details { padding-left: 1em; }
+summary { margin-left: -1em; }
+
+/* Text Blocks */
+/* =========== */
+
+/* Literal Blocks */
+pre.literal-block, pre.doctest-block,
+pre.math, pre.code {
+  font-family: monospace;
+}
+
+/* Block Quotes and Topics */
+bockquote { margin: 1em 2em; }
+blockquote p.attribution,
+.topic p.attribution {
+  text-align: right;
+  margin-left: 20%;
+}
+
+/* Tables */
+/* ====== */
+
+/* th { vertical-align: bottom; } */
+
+table tr { text-align: left; }
+
+/* "booktabs" style (no vertical lines) */
+table.booktabs {
+  border: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+
+/* numbered tables (counter defined in div.document) */
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+}
+
+/* Explicit Markup Blocks */
+/* ====================== */
+
+/* Footnotes and Citations */
+/* ----------------------- */
+
+/* line on the left */
+.footnote-list {
+  border-left: solid thin;
+  padding-left: 0.25em;
+}
+
+/* Directives */
+/* ---------- */
+
+/* Body Elements */
+/* ~~~~~~~~~~~~~ */
+
+/* Images and Figures */
+
+/* let content flow to the side of aligned images and figures */
+figure.align-left,
+img.align-left,
+video.align-left,
+object.align-left {
+  clear: left;
+  float: left;
+  margin-right: 1em;
+}
+figure.align-right,
+img.align-right,
+video.align-right,
+object.align-right {
+  clear: right;
+  float: right;
+  margin-left: 1em;
+}
+/* Stop floating sidebars, images and figures */
+h1, h2, h3, h4, footer, header { clear: both; }
+
+/* Numbered figures */
+figure.numbered > figcaption > p:before {
+  counter-increment: figure;
+  content: "Figure " counter(figure) ": ";
+  font-weight: bold;
+}
+
+/* Admonitions and System Messages */
+.caution p.admonition-title,
+.attention p.admonition-title,
+.danger p.admonition-title,
+.error p.admonition-title,
+.warning p.admonition-title,
+div.error {
+  color: red;
+}
+
+/* Sidebar */
+/* Move right. In a layout with fixed margins, */
+/* it can be moved into the margin.            */
+aside.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
+  margin-left: 1em;
+  margin-right: -1%;
+  background-color: #fffffa;
+}
+
+
+/* Code */
+pre.code { padding: 0.7ex }
+pre.code, code { background-color: #eeeeee }
+/* basic highlighting: for a complete scheme, see */
+/* https://docutils.sourceforge.io/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Math */
+/* for math-output=MathML (for math-output=HTML, see math.css) */
+math .boldsymbol {
+  font-weight: bold;
+}
+mstyle.mathscr, mi.mathscr {
+  font-family: STIX;
+}
+
+/* Epigraph           */
+/* Highlights         */
+/* Pull-Quote         */
+/* Compound Paragraph */
+/* Container          */
+
+/* Inline Markup */
+/* ============= */
+
+sup, sub { line-height: 0.8; } /* do not add leading for lines with sup/sub */
+
+/* Inline Literals                                          */
+/* possible values: normal, nowrap, pre, pre-wrap, pre-line */
+/*   span.docutils.literal { white-space: pre-wrap; }       */
+
+/* Hyperlink References */
+a { text-decoration: none; }
+
+/* External Targets       */
+/*   span.target.external */
+/* Internal Targets       */
+/*   span.target.internal */
+/* Footnote References    */
+/*   a[role="doc-noteref"] */
+/* Citation References    */
+/*   a.citation-reference */
+
+</style>
+</head>
+<body class="with-toc">
+<main id="section-1">
+<h1 class="title">进销存管理系统</h1>
+
+<!-- # with overline, for parts
+* with overline, for chapters
+=, for sections
+-, for subsections
+^, for subsubsections
+", for paragraphs -->
+<nav class="contents" id="contents" role="doc-toc">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-1">1. 概述</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-2">2. 系统分析</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-4" id="toc-entry-3">2.1 需求分析</a></p></li>
+<li><p><a class="reference internal" href="#section-5" id="toc-entry-4">2.2 可行性分析</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#section-6" id="toc-entry-5">3. 总体设计</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-7" id="toc-entry-6">3.1 项目规划</a></p></li>
+<li><p><a class="reference internal" href="#section-8" id="toc-entry-7">3.2 功能框图</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#section-9" id="toc-entry-8">4. 系统设计</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-10" id="toc-entry-9">4.1 设计目标</a></p></li>
+<li><p><a class="reference internal" href="#section-11" id="toc-entry-10">4.2 编码设计</a></p></li>
+<li><p><a class="reference internal" href="#section-12" id="toc-entry-11">4.3 逻辑结构设计</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<!-- .. sectnum:: -->
+<section id="section-2">
+<h2><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">1. 概述</a></h2>
+<p>随着我国经济的高速发展， 中小企业在社会经济中扮演的角色越来越重要， 已成为最多元化和最具创新精神的部分。 但是随着企业的发展， 客户的增多， 企业账目混乱， 库存不准， 信息反馈不及时等问题也接踵而至。 这些问题已成为制约中小企业发展的瓶颈， 严重制约了中小企业的发展壮大。 越来越多的企业经营者认识到： 单纯靠对商品的占有， 靠个人经验， 已经很难把握市场， 很难在激烈的竞争中取胜。 如何借助 IT 手段、 如何通过信息化， 加强核心竞争力， 实现持续发展已成为中小企业亟待解决的关键问题。</p>
+<p>我国中小企业有 70% 是零售企业， 企业经营涉及进、 销、 存多个环节， 涉及商品种类繁多， 业务量大， 库存管理复杂， 使用手工管理已无法胜任。 如何采用先进的计算机系统管理进货、 库存、 销售等诸多环节也已成为趋势及必然。</p>
+</section>
+<section id="section-3">
+<h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">2. 系统分析</a></h2>
+<section id="section-4">
+<h3><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">2.1 需求分析</a></h3>
+<p>通过调查， 要求系统需要有以下功能：</p>
+<ul class="simple">
+<li><p>要有良好的人机界面， 并提供换肤功能。</p></li>
+<li><p>支持多人操作， 要求有较好的权限分配功能。</p></li>
+<li><p>在进货、 退货时存在一对多的关系， 要求支持多行录入功能。</p></li>
+<li><p>为了方便用户查询， 要求支持多条件查询。</p></li>
+<li><p>对于每种商品要求编号惟一， 编号需要自动生成。</p></li>
+<li><p>支持多种报表打印。</p></li>
+<li><p>支持账目的详细内容浏览。</p></li>
+</ul>
+</section>
+<section id="section-5">
+<h3><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">2.2 可行性分析</a></h3>
+<p>开发任何一个基于计算机的系统， 都会受到时间和资源上的限制。 因此， 在接受任何一个项目开发任务之前， 必须根据客户可能提供的时间和资源条件进行可行性分析， 以减少项目开发风险， 避免人力、 物力和财力的浪费。</p>
+<p>本系统数据库采用目前比较流行的 Microsoft SQL Server， 该数据库系统在安全性、 准确性、 运行速度方面有绝对的优势， 并且处理数据库量大， 效率高； 开发工具采用 Delphi7， Delphi7 是目前应用最广泛的数据库系统开发工具， 可以快速开发 Windows 应用程序。</p>
+</section>
+</section>
+<section id="section-6">
+<h2><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">3. 总体设计</a></h2>
+<section id="section-7">
+<h3><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">3.1 项目规划</a></h3>
+<p>进销存管理系统是一个典型的数据库应用程序， 由登录模块、 主界面、 基本信息模块、 进货管理和销售管理模块、 钱流管理模块、 库存管理模块、 查帐模块、 统计与分析模块、 系统维护模块等组成。 特规划功能模块如下：</p>
+<ul>
+<li><p>基本信息模块</p>
+<p>基本信息模块的主要实现库存商品、内部职员、往来单位、费用类型信息等管理。</p>
+</li>
+<li><p>进货管理模块</p>
+<p>进货管理模块主要管理企业商品进货及退货信息，支持多行录入。</p>
+</li>
+<li><p>销售管理模块</p>
+<p>销售管理模块主要管理企业商品销售及退货信息，支持多行录入。</p>
+</li>
+<li><p>钱流管理模块</p>
+<p>钱流管理模块主要实现往来账目的录入和账目的详细信息浏览等功能。</p>
+</li>
+<li><p>库存管理模块</p>
+<p>库存管理模块主要实现库存货品浏览、库存盘点、库存报警等功能。</p>
+</li>
+<li><p>统计分析模块</p>
+<p>查账模块主要实现进货统计分析、销售统计分析和成本分析等功能。</p>
+</li>
+<li><p>查账模块</p>
+<p>查账模块主要实现与供应商、代理商对帐、费用管理、应收应付等功能。</p>
+</li>
+<li><p>系统维护模块</p>
+<p>系统维护模块的主要实现本单位管理、操作员设置、数据的备份和还原等功能。</p>
+</li>
+</ul>
+</section>
+<section id="section-8">
+<h3><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">3.2 功能框图</a></h3>
+<figure class="align-center">
+<img alt="alternate text" src="img/3-1.png" />
+<figcaption>
+<p>图 3.2-1 功能框图</p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="section-9">
+<h2><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">4. 系统设计</a></h2>
+<section id="section-10">
+<h3><a class="toc-backref" href="#toc-entry-9" role="doc-backlink">4.1 设计目标</a></h3>
+<p>根据企业的需求和进销存管理的特点， 该系统实施后， 应达到以下目标：</p>
+<ul class="simple">
+<li><p>支持多行输入， 自动生成编号。</p></li>
+<li><p>界面美观友好、 信息查询灵活、 方便、 快捷、 准确。</p></li>
+<li><p>强大的库存预警功能， 在意外中将损失降到最低。</p></li>
+<li><p>提高工作效率， 降低成本。</p></li>
+<li><p>往来账目详细浏览。</p></li>
+<li><p>图形化数据分析。</p></li>
+<li><p>对用户输入的数据进行过滤， 当输入有误时提示用户。</p></li>
+<li><p>数据保密性强， 用户对应不同的操作级别。</p></li>
+<li><p>系统最大限度地实现了易安装性、 易维护性和易操作性。</p></li>
+<li><p>直接调用 Word、 Excel 软件。</p></li>
+<li><p>系统运行稳定、 安全可靠。</p></li>
+</ul>
+</section>
+<section id="section-11">
+<h3><a class="toc-backref" href="#toc-entry-10" role="doc-backlink">4.2 编码设计</a></h3>
+<p>编码是一种商品或单据的惟一标识， 编码设计的目的是为了便于数据的存储和检索， 提高处理的效率和精度， 进销存管理系统中编码设计如下：</p>
+<ul>
+<li><p>单据编号</p>
+<ol class="arabic simple">
+<li><p>进货单据编号为系统日期、 “进货” 拼音简码和 7 位数字编码的组合。 例如 20050228JH0000012。</p></li>
+<li><p>进货退货编号为系统日期、 “进货退货” 拼音简码和 7 位数字编码的组合。 例如， 20050228JHTH0000012。</p></li>
+<li><p>销售单据编号为系统日期、 “销售” 拼音简码和 7 位数字编码的组合。 例如， 20050228XS0000012。</p></li>
+<li><p>销售退货编号为系统日期、 “销售退货” 拼音简码和 7 位数字编码的组合， 例如， 20050228XSTH0000012。</p></li>
+</ol>
+</li>
+<li><p>商品编号</p>
+<p>商品编号为字母 “T” 和 5 位数字编码。</p>
+</li>
+<li><p>往来单位编号</p>
+<p>单位编号为字母 “U” 和 4 位数字编码。</p>
+</li>
+<li><p>职员编号</p>
+<p>职员编号为字母 “E” 和 5 位数字编码。</p>
+</li>
+</ul>
+</section>
+<section id="section-12">
+<h3><a class="toc-backref" href="#toc-entry-11" role="doc-backlink">4.3 逻辑结构设计</a></h3>
+<p>本系统数据库采用 SQL Server 2000 数据库， 数据库名称为 “db_EMS”。 数据库 db_EMS 中包含 18 个表。 下面分别给出数据库概要说明和数据表的结构。</p>
+<p>数据库概要说明如图 1 所示。</p>
+<figure class="align-center">
+<img alt="alternate text" src="images/db_ems.png" />
+<figcaption>
+<p>图 4.3-1 数据库树型结构图</p>
+</figcaption>
+</figure>
+<ol class="arabic">
+<li><p>数据库关系概要图</p>
+<p>当在主键表中的数据发生改变时， 那么引用这个主键值的字段都要随之改变， 确保数据的一致性和完整性， 因此在 &quot;db_EMS&quot; 数据库中建立关系如图 2 所示。</p>
+</li>
+</ol>
+<figure class="align-center">
+<img alt="alternate text" src="images/db-rel.png" />
+<figcaption>
+<p>图 4.3-2 数据库关系图</p>
+</figcaption>
+</figure>
+<ol class="arabic" start="2">
+<li><p>主要数据表的结构</p>
+<ol class="arabic">
+<li><p>职员信息表 (tb_employ)</p>
+<p>职员信息表用来保存职员信息。 职员信息表的结构如表 1 所示。</p>
+<table>
+<caption>表1 职员信息表结构</caption>
+<thead>
+<tr><th class="head"><p>字段名称</p></th>
+<th class="head"><p>字段类型</p></th>
+<th class="head"><p>字段大小</p></th>
+<th class="head"><p>主键否</p></th>
+<th class="head"><p>功能描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>employecode</p></td>
+<td><p>Varchar</p></td>
+<td><p>6</p></td>
+<td></td>
+<td><p>职员编号</p></td>
+</tr>
+<tr><td><p>fullname</p></td>
+<td><p>Varchar</p></td>
+<td><p>20</p></td>
+<td><p>是</p></td>
+<td><p>职员全称</p></td>
+</tr>
+<tr><td><p>name</p></td>
+<td><p>Varchar</p></td>
+<td><p>20</p></td>
+<td></td>
+<td><p>职员简称</p></td>
+</tr>
+<tr><td><p>sex</p></td>
+<td><p>Varchar</p></td>
+<td><p>2</p></td>
+<td></td>
+<td><p>性别</p></td>
+</tr>
+<tr><td><p>department</p></td>
+<td><p>Varchar</p></td>
+<td><p>20</p></td>
+<td></td>
+<td><p>所在部门</p></td>
+</tr>
+<tr><td><p>tel</p></td>
+<td><p>Varchar</p></td>
+<td><p>20</p></td>
+<td></td>
+<td><p>联系电话</p></td>
+</tr>
+<tr><td><p>memo</p></td>
+<td><p>Varchar</p></td>
+<td><p>40</p></td>
+<td></td>
+<td><p>备注</p></td>
+</tr>
+<tr><td><p>shortcode</p></td>
+<td><p>Varchar</p></td>
+<td><p>10</p></td>
+<td></td>
+<td><p>拼音简码</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+</main>
+<footer>
+<p><a class="reference external" href="进销存管理系统.rst">View document source</a>.
+Generated on: 2022-09-27 05:59 UTC.
+Generated by <a class="reference external" href="https://docutils.sourceforge.io/">Docutils</a> from <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a> source.
+</p>
+</footer>
+</body>
+</html>
