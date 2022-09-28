@@ -192,88 +192,36 @@ Delphi7 是目前应用最广泛的数据库系统开发工具， 可以快速�
 
       职员信息表用来保存职员信息。 职员信息表的结构如表 1 所示。
       
-      ..
-        .. csv-table:: 表1 职员信息表结构
-          :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
-          :widths: auto
-          :align: center
-
-          "employecode", "Varchar", "6","", "职员编号"
-          "fullname", "Varchar","20","是","职员全称"
-          "name",Varchar,20,,职员简称
-          sex,Varchar,2,,性别
-          department,Varchar,20,,所在部门
-          tel,Varchar,20,,联系电话
-          memo,Varchar,40,,备注
-          shortcode,Varchar,10,,拼音简码
- 
-      .. list-table:: 表1 职员信息表结构
+      .. csv-table:: 表1 职员信息表结构
+        :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
         :widths: auto
-        :header-rows: 1
+        :align: center
 
-        * - 字段名称
-          - 字段类型
-          - 字段大小
-          - 主键否
-          - 功能描述
-      
-        * - employecode
-          - Varchar
-          - 6
-          -
-          - 职员编号
-        * - fullname
-          - Varchar
-          - 20
-          - 是
-          - 职员全称 
-        * - name
-          - Varchar
-          - 20
-          -
-          - 职员简称
-        * - sex
-          - Varchar
-          - 2
-          -
-          - 性别
-        * - department
-          - Varchar
-          - 20
-          -
-          - 所在部门
-        * - tel
-          - Varchar
-          - 20
-          -
-          - 联系电话
-        * - memo
-          - Varchar
-          - 40
-          - 
-          - 备注
-        * - shortcode
-          - Varchar
-          - 10
-          -
-          - 拼音简码
+        "employecode", "Varchar", "6","", "职员编号"
+        "fullname", "Varchar","20","是","职员全称"
+        "name",Varchar,20,,职员简称
+        sex,Varchar,2,,性别
+        department,Varchar,20,,所在部门
+        tel,Varchar,20,,联系电话
+        memo,Varchar,40,,备注
+        shortcode,Varchar,10,,拼音简码
 
    #. 进货主表 (tb_warehouse_main)
       
       进货主表用来保存进货中主要和相同的信息。 进货主表的结构如表 2 所示。
 
       .. csv-table:: 表2 进货主表结构
-          :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
-          :widths: auto
-          :align: left
+         :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
+         :widths: auto
+         :align: center
 
-          Billdate,datetime,8,,录单日期
-          Billcode,varchar,20,是,单据编号
-          Units,varchar,20,,供货单位
-          Handle,varchar,20,,经手人
-          Summary,varchar,100,,摘要
-          Fullpayment,float,8,,应付金额
-          Payment,float,8,,实付金额
+         Billdate,datetime,8,,录单日期
+         Billcode,varchar,20,是,单据编号
+         Units,varchar,20,,供货单位
+         Handle,varchar,20,,经手人
+         Summary,varchar,100,,摘要
+         Fullpayment,float,8,,应付金额
+         Payment,float,8,,实付金额
 
    #. 进货明细表 (tb_warehouse_detailed)
       
@@ -282,7 +230,7 @@ Delphi7 是目前应用最广泛的数据库系统开发工具， 可以快速�
       .. csv-table:: 表3 进货明细表
           :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
           :widths: auto
-          :align: left
+          :align: center
 
           billcode,Varchar,20,,单据编号
           tradecode,Varchar,20,,商品编号
@@ -301,19 +249,19 @@ Delphi7 是目前应用最广泛的数据库系统开发工具， 可以快速�
       用户权限表用来保存用户权限设置信息。 用户权限表结构如表 4 所示。
 
       .. csv-table:: 表4 用户权限表结构
-          :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
-          :widths: auto
-          :align: left
+         :header: "字段名称", "字段类型", "字段大小", "主键否", "功能描述"
+         :widths: auto
+         :align: center
 
-          number,Varchar,20,是,用户编号
-          users,Varchar,20,,用户名称
-          password,Varchar,20,,用户密码
-          stock,Bit,1,,进货管理
-          vendition,Bit,1,,销售管理
-          checked,Bit,1,,库存管理
-          money,Bit,1,,钱流管理
-          system,Bit,1,,系统维护
-          base,Bit,1,,基本信息
+         number,Varchar,20,是,用户编号
+         users,Varchar,20,,用户名称
+         password,Varchar,20,,用户密码
+         stock,Bit,1,,进货管理
+         vendition,Bit,1,,销售管理
+         checked,Bit,1,,库存管理
+         money,Bit,1,,钱流管理
+         system,Bit,1,,系统维护
+         base,Bit,1,,基本信息
 
       |notice| 注意: 在设计数据表时， 数据表的命名要能代表表的意义。
 
