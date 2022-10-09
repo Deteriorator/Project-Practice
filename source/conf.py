@@ -50,6 +50,8 @@ project = 'Project-Practice'
 copyright = '2022-%s, Leon Lee' % thisyear
 author = 'Leon Lee'
 
+show_authors = True
+
 # The full version, including alpha/beta/rc tags
 version = "Alpha"
 release = version
@@ -68,6 +70,7 @@ extensions = [
     'sphinx.ext.viewcode',
     #'sphinxcontrib.autoprogram', # pip install sphinxcontrib-autoprogram
     'sphinx_copybutton',
+    'sphinx.ext.autosummary',
     # enable pylons_sphinx_latesturl when this branch is no longer "latest"
     # 'pylons_sphinx_latesturl',
 ]
@@ -126,7 +129,14 @@ master_doc = 'index'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'pyramid'
+#html_theme = 'pyramid'
+html_theme = 'sphinx13'
+
+html_theme_path = ['_themes']
+html_css_files = [
+    # 'basic.css',  # included through inheritance from the basic theme
+    'sphinx13.css',
+]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -144,6 +154,12 @@ html_sidebars = {'**': [
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 html_title = 'The Leon\'s Learn Notes v%s' % release
+
+#html_additional_pages = {'contents': 'contents.html'}
+
+#html_use_opensearch = 'https://www.sphinx-doc.org/en/master'
+#html_baseurl = 'https://www.sphinx-doc.org/en/master/'
+#html_favicon = '_static/favicon.svg'
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -361,7 +377,7 @@ def setup(app):
 # Bibliographic Dublin Core info.
 epub_title = 'The Leon\'s Learning Notes, Version %s' % release
 epub_author = 'Leon Lee'
-epub_publisher = 'Leon Lee'
+epub_publisher = 'www.liangz.org'
 epub_copyright = '2020-%d' % thisyear
 
 # The language of the text. It defaults to the language option
@@ -369,24 +385,36 @@ epub_copyright = '2020-%d' % thisyear
 epub_language = 'zh-CN'
 
 # The scheme of the identifier. Typical schemes are ISBN or URL.
-epub_scheme = 'ISBN'
+epub_scheme = 'url'
 
 # The unique identifier of the text. This can be a ISBN number
 # or the project homepage.
-epub_identifier = '0615445675'
+epub_identifier = 'www.liangz.org'
 
 # A unique identification for the text.
-epub_uid = 'The Pyramid Web Framework, Version %s' \
-           % release
+epub_uid = 'The Leon\'s Learning Notes, Version %s' % release
 
 # A list of files that should not be packed into the epub file.
-epub_exclude_files = ['_static/opensearch.xml', '_static/doctools.js',
-    '_static/jquery.js', '_static/searchtools.js', '_static/underscore.js',
-    '_static/basic.css', 'search.html', '_static/websupport.js']
+# pyramid
+# epub_exclude_files = ['_static/opensearch.xml', '_static/doctools.js',
+#     '_static/jquery.js', '_static/searchtools.js', '_static/underscore.js',
+#     '_static/basic.css', 'search.html', '_static/websupport.js']
 
+epub_exclude_files = ['_static/opensearch.xml', '_static/doctools.js',
+                      '_static/jquery.js', '_static/searchtools.js',
+                      '_static/sphinx_highlight.js',
+                      '_static/underscore.js', '_static/basic.css',
+                      '_static/language_data.js',
+                      'search.html', '_static/websupport.js']
 
 # The depth of the table of contents in toc.ncx.
 epub_tocdepth = 3
+
+epub_fix_images = False
+epub_max_image_width = 0
+epub_show_urls = 'inline'
+epub_use_index = False
+epub_description = 'The Leon\'s Learning Notes'
 
 # For a list of all settings, visit http://sphinx-doc.org/config.html
 
